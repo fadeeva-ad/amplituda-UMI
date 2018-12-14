@@ -1,0 +1,18 @@
+<?php
+/**
+ * Уменьшенное изображение.
+ *
+ * @var umiTemplaterPHP|ViewPhpExtension|DemomarketPhpExtension $this
+ * @var array $variables
+ */
+
+$thumbnail = $this->getThumbnail($variables);
+$canShowEIP = $thumbnail['field_name'] && $thumbnail['id'];
+?>
+
+<img
+	class="<?= $thumbnail['class'] ?>"
+	src="<?= $thumbnail['src'] ?>"
+	alt="<?= $this->escape($thumbnail['alt']) ?>"
+	title="<?= $this->escape($thumbnail['title']) ?>"
+/>

@@ -1,0 +1,41 @@
+<?php
+
+	$cats = $this->getCatagories();
+?>
+<!-- start: main-content -->
+	<div class="main-content">
+		<div class="main-content__wrapper container">
+			<!-- sidebar -->
+			<div class="sidebar">
+				<div class="sidebar__block">
+					<p class="sidebar__title">
+						<a href="#" class="sidebar__link">Collections</a>
+						<ul class="sidebar__list">
+							<li class="sidebar__item"><a href="/view-page.html" class="sidebar__category">Viev all</a></li>
+							<?php foreach($cats as $cat){ ?>
+							<li class="sidebar__item"><a href="<?=$cat->link?>" class="sidebar__category"><?=$cat->name?></a></li>
+							<?php } ?>
+						</ul>
+					</p>
+				</div>
+			</div>
+			<div class="gallery">
+				<div class="gallery__item">
+					<a href="/view-page.html" class="gallery__link" style="background-image: url('/images/rBGO-8rqXMI.jpg');">
+					</a>
+					<p class="gallery__text">Viev all</p>
+				</div>
+				<?php foreach($cats as $cat){ $cat_image = $cat->getValue('header_pic'); ?>
+				<div class="gallery__item">
+					<a href="<?=$cat->link?>" class="gallery__link"  style="background-image: url('<?=(!empty($cat_image)?$cat_image->getFilePath(1):'')?>');">
+					</a>
+					<p class="gallery__text"><?=$cat->name?></p>
+				</div>
+				<?php } ?>
+				
+			</div>
+			<!-- content -->
+
+		</div>
+	</div>
+	<!-- end: main-content-->

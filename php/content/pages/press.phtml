@@ -1,0 +1,37 @@
+<?php
+// функция,которая связывает страницу press и umi
+ $pressList = $this->getPress();
+ ?>
+<div class="press container">
+    <?php 
+    foreach ($pressList as $item) {
+      $photo = $item->getValue('photo'); 
+      ?>
+      <div class="press__block">
+        <?php
+        foreach ($photo as $keyItem => $photoPress) {
+          $thumbnail = $this->getThumbnail(['src'=>$photoPress->getFilePath(1),'width'=>800,'height'=>800]);
+        ?>
+        
+        <div class="press__item press__item_press">
+          <a href="<?=$thumbnail['src']?>" class="press__link press__link_press" data-fancybox="press" data-caption="<?=$photoPress->getAlt()?>"  style="background-image: url('<?=$thumbnail['src']?>');"></a>
+
+        <!-- добавить <p> только первому элементу в массиве -->
+        <?php if ($keyItem == 0) {
+        echo '<p class="press__text">  '. $item->name .'  </p>';
+          
+        }?>
+          
+        </div>
+
+        <?php
+        } 
+        ?>  
+  
+      </div>
+    <?php
+    }
+    ?>
+  </div>
+  
+</div

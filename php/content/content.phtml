@@ -1,0 +1,68 @@
+<?php
+/**
+ * Страница контента.
+ * Страница по умолчанию обрабатывается по отдельному шаблону `content/home/index`.
+ *
+ * @var umiTemplaterPHP|ViewPhpExtension|DemomarketPhpExtension $this
+ * @var array $variables
+ * @var iUmiHierarchyElement $page
+ */
+
+$page = $variables['page'];
+?>
+	<style>
+	.contacts{
+		min-height: calc(100vh - 290px);
+	}
+	.contacts__item img {
+		max-width: 70px;
+	}
+	.gallery__link{
+		background-size: contain;
+	}
+	</style>
+<?php if ($this->isHomePage($variables)): ?>
+	<?= $this->render($variables, 'content/home') ?>
+<?php elseif ($page->id==1): // Продукты ?>
+	<?= $this->render($variables, 'content/pages/products') ?>
+<?php elseif ($page->id==5): // Пресса ?>
+	<?= $this->render($variables, 'content/pages/press') ?>
+<?php elseif ($page->id==6): // Галерея ?>
+	<?= $this->render($variables, 'content/pages/gallery') ?>
+<?php elseif ($page->getParentId()==1): // Категория ?>
+	<?= $this->render($variables, 'content/pages/cat') ?>
+<?php elseif ($this->is404Page($variables)): ?>
+	<?= $this->render($variables, 'content/notfound') ?>
+<?php else: ?>
+	<?= $page->getValue('content') ?>
+<?php endif; ?>
+
+<?php if ($this->isHomePage($variables)): ?>
+	<footer class="footer footer__main-page">
+		<div class="container">
+			<div class="footer__logo-box"><img src="public/img/footer-logo.png" alt="logo" class="footer__logo"></div>
+		</div>
+	</footer>
+<?php else: ?>
+	<footer class="footer">
+		<div class="container">
+			<div class="footer__wrapper">
+				<ul class="footer__block">
+					<li class="footer__list">
+						<a href="#" class="footer__social "><img src="public/img/facebook.svg" alt="vkontakte" class="footer__icon svg"></a>
+					</li>
+					<li class="footer__list">
+						<a href="#" class="footer__social "><img src="public/img/vk-social-network-logo.svg" alt="vkontakte" class="footer__icon svg"></a>
+					</li>
+					<li class="footer__list">
+						<a href="#" class="footer__social "><img src="public/img/instagram-logo.svg" alt="instagram" class="footer__icon svg"></a>
+					</li>
+				</ul>
+				<div class="footer__email-link">
+					<p class="footer__email">Email: amplitudas@hotmail.com</p>
+					<a href="https://axlab.ru/" class="footer__axlab" target="_blank">Разработка сайта - AxLab.ru</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+<?php endif; ?>

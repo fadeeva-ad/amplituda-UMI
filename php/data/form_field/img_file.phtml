@@ -1,0 +1,21 @@
+<?php
+/**
+ * Поле типа "Изображение".
+ *
+ * @var umiTemplaterPHP|ViewPhpExtension|DemomarketPhpExtension $this
+ * @var array $variables
+ */
+
+$field = $variables;
+?>
+<label class="fancyboxPopup__file">
+	<input
+		type="file"
+		class="input_file"
+		placeholder="<?= $this->escape($field['title']) ?>"
+		<?= (isset($field['required']) ? ' required ' : '') ?>
+		name="<?= $field['input_name'] ?>"
+		value="<?= isset($field['value']) ? $field['value'] : '' ?>"
+	/>
+	<div class="input input_fileMask fancyboxPopup__input"><?= $this->escape($field['title']) ?></div>
+</label>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title><?= $this->escape($variables['title']) ?></title>
+	<meta name="description" content="<?= $this->escape($variables['meta']['description']) ?>">
+    <meta name="keywords" content="<?= $this->escape($variables['meta']['keywords']) ?>">
+	<base href="<?= $this->getResourceDirectory() ?>">
+	<link rel="stylesheet" href="public/style.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+	<link rel="manifest" href="/images/site.webmanifest">
+	<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+	<!-- start: header area-->
+	<header class="header">
+		<div class="header__wrapper container">
+			<ul class="header__list">
+				<li class="header__item">
+					<a href="/products/" class="header__link">Products</a>
+				</li>
+				<li class="header__item">
+						<a href="/about/" class="header__link">About</a>
+				</li>
+				<li class="header__item">
+						<a href="/contacts/" class="header__link">Contacts</a>
+				</li>
+			</ul>
+			<a class="header__img-container" href="/">
+				<img class="header__logo" src="public/img/logo.png" alt="amplituda">
+			</a>
+			<ul class="header__list">
+				<li class="header__item">
+					<a href="/custom/" class="header__link">Custom</a>
+				</li>
+				<li class="header__item">
+						<a href="/press/" class="header__link">Press</a>
+				</li>
+				<li class="header__item">
+					<a href="/gallery/" class="header__link">Gallery</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- end: header area-->
+
+	<?= $this->render($this->macros('system', 'listErrorMessages'), 'library/errors') ?>
+	<?= $this->render($variables, "{$variables['module']}/{$variables['method']}") ?>
+
+
+<!-- end: footer -->
+	</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
+	<script src="dev/js/jquery.min.js"></script>
+	<script src="dev/js/jquery.fancybox.min.js"></script>
+	<script src="public/build.js"></script>
+	</html>

@@ -1,0 +1,24 @@
+<?php
+$item = $variables['page'];
+?>
+<!-- start: gallery area-->
+<div class="gallery container">
+  <?php
+    $photo = $item->getValue('photo');
+  ?>
+    <?php
+      foreach ($photo as $keyItem => $photoItem) {
+        $thumbnail = $this->getThumbnail(['src'=>$photoItem->getFilePath(1),'width'=>800,'height'=>800]);  
+    ?>
+      <div class="gallery__item gallery__item_gallery">
+        <a href="<?=$thumbnail['src']?>" class="gallery__link  gallery__link_gallery" data-fancybox="gallery" data-caption="<?=$photoItem->getAlt()?>"  style="background-image: url('<?=$thumbnail['src']?>');">
+        </a>
+        <p class="gallery__text">
+          <?=$photoItem->getAlt()?>
+        </p>
+      </div>
+    <?php
+      }  
+    ?>
+</div>
+<!-- end: gallery area-->

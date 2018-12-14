@@ -1,0 +1,52 @@
+<?php 
+$reviews = $this->reviews();
+?>
+<?= $this->render($variables, 'layout/blocks/_breadcrumbs') ?>
+<div class="reviewsPage">
+    <h2 class="reviewsPage__head">отзывы</h2>
+    <div class="reviewsPage__list">
+        <?php foreach($reviews as $review){ ?>
+            <div class="reviewsPage__item">
+            <div class="reviewsPage__message">
+                <div class="reviewsPage__person">
+                    <img src="production/img/man_with_a_cam.png" alt="подозрительный тип" class="reviewsPage__avatar">
+                    <div class="reviewsPage__contacts">
+                        <div class="reviewsPage__name"><?=$review->name?></div>
+                        <div class="reviewsPage__location"><?=$review->gorod?></div>
+                    </div>
+                </div>
+                <div class="reviewsPage__text reviewsPage__text_withMargin">
+                    «<?=$this->escape(strip_tags($review->content))?>»
+                </div>
+                <?php if($review->tovar){ ?>
+                    <div class="reviewsPage__product">
+                        <img src="<?=$review->tovar[0]->getValue('photo')?>" alt="" class="reviewsPage__productImg">
+                        <div class="reviewsPage__productTitle">
+                            <?=$review->tovar[0]->name?>
+                            <a href="<?=$this->getPath($review->tovar[0])?>" class="reviewsPage__productGoTo">
+                                Перейти в товар
+                            </a>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                
+            </div>
+            <?php if($review->otvet){ ?>
+                <div class="reviewsPage__answer">
+                    <div class="reviewsPage__answerTitle">
+                        Кроссовки24.рф
+                    </div>
+                    <div class="reviewsPage__text">
+                        <?=$review->otvet?>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
+        <?php } ?>
+
+        
+    </div>
+    <button class="btn btn_border_orange btn_color_orange reviewsPage__btn" data-fancybox data-src="#reviewPopup" href="javascript:;">оставить отзыв</button>
+</div>

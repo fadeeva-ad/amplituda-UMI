@@ -1,0 +1,194 @@
+@import 'variables';
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  flex: auto;
+  
+  &__item {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex: 0 0 50%;
+    max-width: 33%;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    @include desktop {  
+      max-width: 25%;
+    }
+    &_press {
+      margin-bottom: 30px;
+      max-width: 33%;
+    }
+
+    &_gallery {
+      max-width: 33%;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding-bottom: 120%;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 15px;
+    margin-bottom: 5px;
+
+    &_press {
+      padding-bottom: 150%;
+  
+    }
+
+    &_gallery {
+      padding-bottom: 150%;
+      background-position: center bottom;
+      background-size: contain;
+
+      // canceled hover with gray background for pictures in gallery
+      &::after {
+        content: none !important;
+      }
+      &::before {
+        content: none !important;    
+      }
+      
+      &:hover::before,
+      &:hover::after {
+        opacity: 0 !important;
+      }
+  
+      // modificator for two horizontal images in gallery-page
+      &-mod {
+        background-position: right bottom;
+      }
+    }
+    // hover with gray background for pictures in gallery
+    
+    //попробовать сделать 2 способом : стилизовать с помощью дочернего дива:hover в ссылке
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.25);
+      content: '';
+      text-align: center;
+      line-height: 100%;
+      z-index: 10;
+      opacity: 0;
+      transition: 0.2s ease-in-out;
+    }
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -50px;
+      background-color: rgba(255,255,255,.75);
+      content: 'View';
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none;
+      color: #000;
+      text-align: center;
+      line-height: 40px;
+      z-index: 11;
+      opacity: 0;
+      transition: 0.2s ease-in-out;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      opacity: 1;
+    }
+
+
+  }
+
+  &__text {
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    margin: 5px 0 0 0;
+    font-size: 15px;
+  }
+
+  &__item-details{
+    display: none; 
+    width: 800px;
+    max-width: 100%;
+    border-radius: 5px;
+
+    img{
+      max-width: 100%;
+      padding-bottom: 15px;
+    }
+  }
+
+  &__modal-wrapper {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eceeef;
+    font-size: 18px;
+  }
+  
+  &__close-header {
+    width: 26px;
+    height: auto;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    outline: none;
+  }
+
+  &__modal-ttl {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 115px;
+  }
+  &__modal-price {
+    margin: 0;
+    font-size: 18px;
+    height: max-content;
+  }
+
+  &__btn-close {
+    display: block;
+    color: #000;
+    transition: all .2s ease-in-out;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-size: 18px;
+    height: max-content;
+    align-self: flex-end;
+  }
+}
+
+
+@supports (display: grid) {
+  .gallery {
+    display:grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &__item {
+      padding: 0;
+      margin: 0;
+      max-width: 100%;
+
+    }
+  }
+}

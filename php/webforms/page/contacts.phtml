@@ -1,0 +1,41 @@
+<?php
+/**
+ * Страница "Контакты":
+ *   - блок информации о владельце сайта
+ *   - форма обратной связи
+ * 
+ * @var umiTemplaterPHP|ViewPhpExtension|DemomarketPhpExtension $this
+ * @var array $variables
+ */
+
+$settings = $this->getSettingsContainer();
+$settingsId = $settings->getId();
+?>
+<div class="contacts">
+    <h2 class="contacts__head">Контакты</h2>
+    <div class="contacts__body">
+        <div class="contacts__info">
+            <ul class="contacts__list">
+                <li class="contacts__listItem">
+                    <img src="production/img/phone_orange.svg" alt="phone" class="contacts__icon">
+                    <span><a class="contacts__link" href="tel:<?= $this->escape($settings->getValue('contacts-phone')) ?>"><?= $this->escape($settings->getValue('contacts-phone')) ?></a> Звоните с 10:00 до 22:00</span>
+                </li>
+                <li class="contacts__listItem">
+                    <img src="production/img/location_orange.svg" alt="location" class="contacts__icon">
+                    <span><?= $this->escape($settings->getValue('contacts-address')) ?></span>
+                </li>
+                <li class="contacts__listItem">
+                    <img src="production/img/clock_orange.svg" alt="clock" class="contacts__icon">
+                    <span>Самовывоз из магазина с 11:00 до 20:00</span>
+                </li>
+                <li class="contacts__listItem">
+                    <img src="production/img/mail_orange.svg" alt="mail" class="contacts__icon">
+                    <a href="mailto:<?= $this->escape($settings->getValue('contacts-email')) ?>" class="contacts__link"><?= $this->escape($settings->getValue('contacts-email')) ?></a>
+                </li>
+            </ul>
+            <img src="production/img/contacts_img.png" alt="кроссовки" class="contacts__img">
+        </div>
+        <iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1999.3091015396158!2d30.32164731609649!3d59.927012981871876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963100e2fd9e6f%3A0xcbece6bb36c46973!2z0JPQvtGA0L7RhdC-0LLQsNGPINGD0LsuLCA1MSwg0KHQsNC90LrRgi3Qn9C10YLQtdGA0LHRg9GA0LMsIDE5MTAyMw!5e0!3m2!1sru!2sru!4v1537193212967"    frameborder="0" style="border:0;" allowfullscreen></iframe>
+    </div>
+</div>
+

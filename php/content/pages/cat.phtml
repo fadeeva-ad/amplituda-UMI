@@ -1,0 +1,67 @@
+<?php
+	$cats = $this->getCatagories();
+	$products = $this->getProducts($variables['pageId']);
+	
+	$thumb_options = [
+		'src' => '',
+		'width' => 300,
+		'height' => 200
+	];
+	
+?>	
+	<!-- start: main-content -->
+	<div class="main-content">
+		<div class="main-content__wrapper container">
+			<!-- sidebar -->
+			<div class="sidebar">
+				<div class="sidebar__block">
+					<p class="sidebar__title">
+						<a href="#" class="sidebar__link">Collections</a>
+						<ul class="sidebar__list">
+							<li class="sidebar__item"><a href="/view-page.html" class="sidebar__category">Viev all</a></li>
+							<?php foreach($cats as $cat){ ?>
+							<li class="sidebar__item"><a href="<?=$cat->link?>" class="sidebar__category"><?=$cat->name?></a></li>
+							<?php } ?>
+						</ul>
+					</p>
+				</div>
+			</div>
+			<!-- start: gallery area-->
+			<div class="gallery">
+				<?php 	
+				foreach($products as $product){ 
+					$photo = $product->getValue('photo')[0]->getFilePath(1); 
+					$thumbnail = $this->getThumbnail(['src'=>$photo,'width'=>300,'height'=>300]); 
+					$image = $this->getThumbnail(['src'=>$photo,'width'=>800,'height'=>600]); 
+				?>
+				<div class="gallery__item">
+					<a href="#gi<?=$product->id?>" class="gallery__link" data-fancybox="" data-modal="true" data-caption="" style="background-image: url('<?=$thumbnail['src']?>');">
+					</a>
+					<!-- added block for creation modal window, where contain information about product -->
+					<div id="gi<?=$product->id?>" class="gallery__item-details">
+						<div class="gallery__modal-wrapper">
+							<button type="button" data-fancybox-close="" class="gallery__close-header" title="Close">
+									<svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24">
+											<path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"></path>
+									</svg>
+							</button>
+							<span class="gallery__modal-ttl"><?=$product->name?></span>	
+						</div>
+						<img src="<?=$image['src']?>" alt="">
+						<div class="gallery__footer-wrapper">
+							<p class="gallery__modal-price"><?=$product->getValue('content')?></p>
+							<button type="button" data-fancybox-close="" class="gallery__btn-close" title="Close">Close
+							</button>
+						</div>
+					</div>
+					<p class="gallery__text"><?=$product->name?></p>
+				</div>
+				<?php } ?>
+				
+
+			</div>
+			<!-- content -->
+
+		</div>
+	</div>
+	<!-- end: main-content-->
